@@ -1,0 +1,113 @@
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin card-base {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin responsive($bp) {
+  @if $bp == sm {
+    @media (min-width: 640px) {
+      @content;
+    }
+  } @else if $bp == md {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $bp == lg {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  } @else if $bp == xl {
+    @media (min-width: 1280px) {
+      @content;
+    }
+  }
+}
+
+// Mobile-first max-width variant (below breakpoint)
+@mixin responsive-below($bp) {
+  @if $bp == sm {
+    @media (max-width: 639px) {
+      @content;
+    }
+  } @else if $bp == md {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $bp == lg {
+    @media (max-width: 1023px) {
+      @content;
+    }
+  } @else if $bp == xl {
+    @media (max-width: 1279px) {
+      @content;
+    }
+  }
+}
+
+@mixin gold-glow {
+  box-shadow: var(--shadow-gold);
+}
+
+@mixin scrollbar-dark {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) var(--color-bg);
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+  }
+}

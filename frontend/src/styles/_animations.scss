@@ -1,0 +1,335 @@
+@use 'variables' as *;
+
+// fadeIn: cards, modals, page enter
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// slideInRight: shop panel open
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// heartBreak: life lost (heart shakes + flashes red)
+// Optimized: removed filter drop-shadow (expensive), uses text-shadow instead
+@keyframes heartBreak {
+  0% {
+    transform: scale(1);
+    color: inherit;
+    text-shadow: none;
+  }
+  15% {
+    transform: scale(1.4) rotate(-10deg);
+    color: #e53935;
+    text-shadow: 0 0 8px rgba(229, 57, 53, 0.8);
+  }
+  30% {
+    transform: scale(0.9) rotate(10deg);
+    color: #e53935;
+    text-shadow: 0 0 6px rgba(229, 57, 53, 0.6);
+  }
+  45% {
+    transform: scale(1.2) rotate(-5deg);
+    color: #e53935;
+    text-shadow: 0 0 8px rgba(229, 57, 53, 0.8);
+  }
+  60% {
+    transform: scale(0.95) rotate(3deg);
+    color: #e53935;
+    text-shadow: 0 0 4px rgba(229, 57, 53, 0.4);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    color: inherit;
+    text-shadow: none;
+  }
+}
+
+// goldPop: gold gained (scale up + amber flash)
+@keyframes goldPop {
+  0% {
+    transform: scale(1);
+    color: inherit;
+  }
+  30% {
+    transform: scale(1.35);
+    color: #f5c842;
+    text-shadow: 0 0 16px rgba(245, 200, 66, 0.8);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    color: inherit;
+  }
+}
+
+// cardSuccess: green glow border 0.5s after success
+// Optimized: uses opacity animation on pseudo-element instead of box-shadow changes
+@keyframes cardSuccess {
+  0%,
+  100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--color-success);
+  }
+}
+
+@keyframes cardSuccessGlow {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+// cardFailure: red border + horizontal shake after failure
+@keyframes cardFailure {
+  0%,
+  100% {
+    transform: translateX(0);
+    border-color: var(--color-danger);
+    box-shadow: 0 0 0 2px var(--color-danger);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-6px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(6px);
+  }
+}
+
+// urgencyPulse: pulsing for expiresIn <= 1
+// Optimized: animates opacity only (GPU-friendly), shadow animation removed
+@keyframes urgencyPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+// shopBounce: item bought scale animation
+@keyframes shopBounce {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.15);
+  }
+  60% {
+    transform: scale(0.95);
+  }
+  80% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// cannotAffordShake: button shake when can't afford
+@keyframes cannotAffordShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-4px);
+  }
+  40%,
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+// bannerDrop: game event banner enters from above with spring bounce
+@keyframes bannerDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-60px) scale(0.85);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(8px) scale(1.03);
+  }
+  70% {
+    transform: translateY(-4px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// successGlow: gold border pulse for quest success banner
+@keyframes successGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 10px rgba(245, 200, 66, 0.25),
+      0 8px 48px rgba(0, 0, 0, 0.7);
+  }
+  50% {
+    box-shadow:
+      0 0 22px rgba(245, 200, 66, 0.55),
+      0 8px 48px rgba(0, 0, 0, 0.7);
+  }
+}
+
+// failureRumble: horizontal shake for quest failure banner
+@keyframes failureRumble {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  15%,
+  45%,
+  75% {
+    transform: translateX(-5px);
+  }
+  30%,
+  60%,
+  90% {
+    transform: translateX(5px);
+  }
+}
+
+// Dragon particle embers
+@keyframes emberFloat {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translateY(-30px) translateX(10px) scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-65px) translateX(-8px) scale(0.6);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-100px) translateX(15px) scale(0.4);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(-140px) translateX(-5px) scale(0.1);
+    opacity: 0;
+  }
+}
+
+// Vue Transition fade
+.fade-enter-active,
+.fade-leave-active {
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+// Utility animation classes
+.animate-fade-in {
+  animation: fadeIn 0.4s ease both;
+  will-change: opacity, transform;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.35s ease both;
+  will-change: opacity, transform;
+}
+
+.animate-heart-break {
+  animation: heartBreak 0.7s ease;
+  will-change: transform, color;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.animate-gold-pop {
+  animation: goldPop 0.6s ease;
+  will-change: transform, color;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.animate-card-success {
+  animation: cardSuccess 0.7s ease forwards;
+  will-change: border-color;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.animate-card-failure {
+  animation: cardFailure 0.6s ease;
+  will-change: transform;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.animate-shop-bounce {
+  animation: shopBounce 0.5s ease;
+  will-change: transform;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.animate-cannot-afford {
+  animation: cannotAffordShake 0.4s ease;
+  will-change: transform;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+// Performance optimization classes for high-frequency animations
+.animate-high-frequency {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}

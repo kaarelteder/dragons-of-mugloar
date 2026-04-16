@@ -1,0 +1,46 @@
+@use 'variables' as *;
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--color-gold);
+  text-shadow: 0 0 20px rgba(245, 200, 66, 0.4);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  color: var(--color-text);
+}
+
+h3 {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  color: var(--color-text);
+}
+
+p {
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+.text-gold {
+  color: var(--color-gold);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-danger {
+  color: var(--color-danger);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
